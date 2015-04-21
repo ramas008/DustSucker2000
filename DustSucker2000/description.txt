@@ -1,0 +1,14 @@
+
+=====================================================
+DustSucker2000 Simulator by Ramin Assadi
+
+This Software creates a toy inside a room with a couple of different commands
+to controll the toy with. The user gets three options. The first one is to
+choose the dimensions of the room(x y). The second one is to choose the
+direction and position of the toy(direction x y). The last option is the
+series of commands for the toy to execute(RLARLARL). The program will then
+calculate the position of the toy after the commands.
+
+Directions: N = North, E = East, W = West, S = South
+Commands: R = Right turn, L = Left turn, A = Move forward
+=====================================================
