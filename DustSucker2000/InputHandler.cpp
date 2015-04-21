@@ -4,10 +4,10 @@
 
 // Constructor of InputHandler class.
 //
-// Vec3& dimensions - The vector for the dimensions of the room.
-// Vec3& position - The vector for the position and direction of toy.
+// Vec2& dimensions - The vector for the dimensions of the room.
+// Vec2& position - The vector for the position and direction of toy.
 // char*& commands - The commands for the toy to carry out.
-InputHandler::InputHandler(Vec3& dimensions, Vec3& position, char*& commands)
+InputHandler::InputHandler(Vec2& dimensions, Vec2& position, std::string& commands)
 {
 	dimensions = HandleDimensions();
 	position = HandlePosition(dimensions);
@@ -17,10 +17,10 @@ InputHandler::InputHandler(Vec3& dimensions, Vec3& position, char*& commands)
 // Returns the dimensions from the user input if the input has
 // acceptable values. If not it will start over until user has entered 
 // acceptable values.
-Vec3 InputHandler::HandleDimensions()
+Vec2 InputHandler::HandleDimensions()
 {
 	int x, y;
-	Vec3 dimensions;
+	Vec2 dimensions;
 
 	// Collect the input and check if the values are corect.
 	do {
@@ -47,12 +47,12 @@ Vec3 InputHandler::HandleDimensions()
 // input has acceptable values. If not it will start over until user has 
 // entered acceptable values.
 //
-// Vec3 dimensions - The dimensions of the room.
-Vec3 InputHandler::HandlePosition(Vec3 dimensions)
+// Vec2 dimensions - The dimensions of the room.
+Vec2 InputHandler::HandlePosition(Vec2 dimensions)
 {
 	int x, y;
 	char direction;
-	Vec3 position;
+	Vec2 position;
 
 	// Set acceptable directions.
 	std::queue<char> que;
@@ -92,9 +92,9 @@ Vec3 InputHandler::HandlePosition(Vec3 dimensions)
 // Returns the series of commands from the user input if the
 // input has acceptable values. If not it will start over until user has 
 // entered acceptable values.
-char* InputHandler::HandleCommands()
+std::string InputHandler::HandleCommands()
 {	
-	char* commands = new char[80];
+	std::string commands;
 
 	// Set acceptable commands
 	std::queue<char> que;
@@ -118,7 +118,7 @@ char* InputHandler::HandleCommands()
 		// Set value for commands and push it to the que.
 		std::cout << "Write in the Commands of the Toy: ";
 		std::cin >> commands;
-		for (unsigned int i = 0; i < strlen(commands); i++)
+		for (unsigned int i = 0; i < commands.length(); i++)
 			que.push(commands[i]);
 
 	} while (!std::cin || !IsValidInput(que, values));
@@ -145,8 +145,8 @@ bool InputHandler::IsValidInput(std::queue<char> que, std::set<char> values)
 //
 // int x - The x value of the user input. 
 // int y - The y value of the user input.
-// Vec3 dimensions - The dimensions of the room.
-bool InputHandler::IsInRoom(int x, int y, Vec3 dimensions)
+// Vec2 dimensions - The dimensions of the room.
+bool InputHandler::IsInRoom(int x, int y, Vec2 dimensions)
 {
 	if ((x < 0 || y < 0 || x > dimensions.X() || y > dimensions.Y()))
 	{

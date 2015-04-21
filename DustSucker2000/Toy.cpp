@@ -1,22 +1,16 @@
 #include "Toy.h"
 
-// Constructor of Toy class.
-//
-// Room* r - The current room for the toy.
-// Vec3 pos - The position and direction of the toy in the room.
-Toy::Toy(Room* r, Vec3 pos)
+
+Toy::Toy(Room* r, Vec2 pos)
 {
 	room = r;
 	position = pos;
 }
 
-// Execute command depending on what the command is.
-//
-// char* commands - An array with all of the commands.
-void Toy::ExecuteCommands(char* commands)
+void Toy::ExecuteCommands(std::string commands)
 {
 	// Loop each command
-	for (unsigned int i = 0; i < strlen(commands); i++)
+	for (unsigned int i = 0; i < commands.length(); i++)
 	{
 		// Check what command it is and execute function
 		switch (commands[i])
@@ -30,25 +24,24 @@ void Toy::ExecuteCommands(char* commands)
 	}
 }
 
-// Checks if it is possible to move forward and executes it.
 void Toy::MoveForward()
 {
-	Vec3 newPosition;
+	Vec2 newPosition;
 	
 	// Calculate the new position after moving forward.
 	switch (position.Direction())
 	{
 		case 'W':
-			newPosition = Vec3(position.Direction(), position.X() - 1, position.Y());
+			newPosition = Vec2(position.Direction(), position.X() - 1, position.Y());
 			break;
 		case 'N':
-			newPosition = Vec3(position.Direction(), position.X(), position.Y() + 1);
+			newPosition = Vec2(position.Direction(), position.X(), position.Y() + 1);
 			break;
 		case 'E':
-			newPosition = Vec3(position.Direction(), position.X() + 1, position.Y());
+			newPosition = Vec2(position.Direction(), position.X() + 1, position.Y());
 			break;
 		case 'S':
-			newPosition = Vec3(position.Direction(), position.X(), position.Y() - 1);
+			newPosition = Vec2(position.Direction(), position.X(), position.Y() - 1);
 			break;
 	}
 
@@ -57,11 +50,9 @@ void Toy::MoveForward()
 		position = newPosition;
 }
 
-// Calculates the new direction of the toy depending on turn command.
-//
-// char turnDirection - The command for what way to rotate.
 void Toy::RotateDirection(char turnDirection)
 {
+	// Check what the direction of the toy is and rotate/turn it accordingly.
 	switch (position.Direction())
 	{
 		case 'W':
@@ -91,8 +82,7 @@ void Toy::RotateDirection(char turnDirection)
 	}
 }
 
-// Returns the position and direction of the toy.
-Vec3 Toy::GetPosition()
+Vec2 Toy::GetPosition()
 {
 	return position;
 }
