@@ -4,8 +4,8 @@
 #include "Vec2.h"
 #include "Room.h"
 
-// Create a Toy with the specified room and position in room.
-// The class also handles the movement and execution of commands.
+// Create a Toy with the room that the toy is in and the position in the room.
+// The class also handles the movement and execution of the toy.
 class Toy
 {
 	public:
@@ -15,13 +15,13 @@ class Toy
 		Toy(Room* r, Vec2 pos);
 
 		// Execute command depending on what the command is.
-		// char* commands - An array with all of the commands.
+		// std::string commands - An array with all of the commands.
 		void ExecuteCommands(std::string commands);
 
 		// Checks if it is possible to move forward and executes it.
 		void MoveForward();
 
-		// Calculates the new direction of the toy depending on turn command.
+		// Calculates the new direction of the toy depending on turn/rotate command.
 		// char turnDirection - The command for what way to rotate.
 		void RotateDirection(char turnDirection);
 

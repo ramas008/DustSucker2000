@@ -2,11 +2,6 @@
 
 #include <string>
 
-// Constructor of InputHandler class.
-//
-// Vec2& dimensions - The vector for the dimensions of the room.
-// Vec2& position - The vector for the position and direction of toy.
-// char*& commands - The commands for the toy to carry out.
 InputHandler::InputHandler(Vec2& dimensions, Vec2& position, std::string& commands)
 {
 	dimensions = HandleDimensions();
@@ -14,9 +9,6 @@ InputHandler::InputHandler(Vec2& dimensions, Vec2& position, std::string& comman
 	commands = HandleCommands();
 }
 
-// Returns the dimensions from the user input if the input has
-// acceptable values. If not it will start over until user has entered 
-// acceptable values.
 Vec2 InputHandler::HandleDimensions()
 {
 	int x, y;
@@ -31,6 +23,7 @@ Vec2 InputHandler::HandleDimensions()
 			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		}
 
+		// Set value of x and y.
 		std::cout << "Write in the Dimensions of the room: ";
 		std::cin >> x >> y;
 
@@ -43,11 +36,6 @@ Vec2 InputHandler::HandleDimensions()
 	return dimensions;
 }
 
-// Returns the position and direction from the user input if the
-// input has acceptable values. If not it will start over until user has 
-// entered acceptable values.
-//
-// Vec2 dimensions - The dimensions of the room.
 Vec2 InputHandler::HandlePosition(Vec2 dimensions)
 {
 	int x, y;
@@ -89,9 +77,6 @@ Vec2 InputHandler::HandlePosition(Vec2 dimensions)
 	return position;
 }
 
-// Returns the series of commands from the user input if the
-// input has acceptable values. If not it will start over until user has 
-// entered acceptable values.
 std::string InputHandler::HandleCommands()
 {	
 	std::string commands;
@@ -126,12 +111,9 @@ std::string InputHandler::HandleCommands()
 	return commands;
 }
 
-// Check if input values match with the acceptable directions or commands.
-//
-// std::queue<char> que - The input values from the user.
-// std::set<char> values - The values that are acceptable.
 bool InputHandler::IsValidInput(std::queue<char> que, std::set<char> values)
 {
+	// If there is a char that is not allowed it will return false.
 	if (values.find(que.front()) == values.end())
 	{
 		std::cerr << "Error: Incorrect values as input!" << std::endl << std::endl;
@@ -141,13 +123,9 @@ bool InputHandler::IsValidInput(std::queue<char> que, std::set<char> values)
 	return que.empty() ? true : IsValidInput(que, values);
 }
 
-// Check if toy is in the dimensions of the room.
-//
-// int x - The x value of the user input. 
-// int y - The y value of the user input.
-// Vec2 dimensions - The dimensions of the room.
 bool InputHandler::IsInRoom(int x, int y, Vec2 dimensions)
 {
+	// If the position of the toy is outside the dimensions it will return false.
 	if ((x < 0 || y < 0 || x > dimensions.X() || y > dimensions.Y()))
 	{
 		std::cerr << "Error: Position is out of bounds!" << std::endl << std::endl;
@@ -156,10 +134,6 @@ bool InputHandler::IsInRoom(int x, int y, Vec2 dimensions)
 	return true;
 }
 
-// Check if dimensions are not equal or lower then 0
-//
-// int x - The x value of the user input. 
-// int y - The y value of the user input. 
 bool InputHandler::IsDimension(int x, int y)
 {
 	if (x < 1 || y < 1)

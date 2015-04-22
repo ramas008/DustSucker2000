@@ -1,6 +1,5 @@
 #include "Toy.h"
 
-
 Toy::Toy(Room* r, Vec2 pos)
 {
 	room = r;
@@ -9,10 +8,10 @@ Toy::Toy(Room* r, Vec2 pos)
 
 void Toy::ExecuteCommands(std::string commands)
 {
-	// Loop each command
+	// Loop each command.
 	for (unsigned int i = 0; i < commands.length(); i++)
 	{
-		// Check what command it is and execute function
+		// Check what command it is and execute corresponding function.
 		switch (commands[i])
 		{
 			case 'A':
@@ -28,7 +27,7 @@ void Toy::MoveForward()
 {
 	Vec2 newPosition;
 	
-	// Calculate the new position after moving forward.
+	// Calculate the new position depending on direction of toy.
 	switch (position.Direction())
 	{
 		case 'W':
@@ -45,7 +44,8 @@ void Toy::MoveForward()
 			break;
 	}
 
-	// Check if the new position is in bounds of the room .
+	// Check if the new position is in bounds of the room. 
+	// If true move toy to new position.
 	if (room->InBounds(newPosition))
 		position = newPosition;
 }

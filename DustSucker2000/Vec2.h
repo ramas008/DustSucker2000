@@ -3,9 +3,9 @@
 
 #include <iostream>
 
-// Vector class that will contain the cardinal direction as a char and the x and y value 
-// as a int. If the vector does not contain the cardinal direction it will create a
-// vector with only the x and y value.
+// Vector class that will contain the cardinal direction as a char and the x and y values
+// as ints. If the vector does not contain the cardinal direction it will create a
+// vector with only the x and y values.
 class Vec2
 {
 	public:

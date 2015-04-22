@@ -7,16 +7,16 @@
 #include <fstream>
 
 int main() {
-	// Initilaze input values
+	// Initialize input values.
 	std::string commands;
 	Vec2 position, dimensions;
 
-	// Create InputHandler, Room and Toy
+	// Create InputHandler, Room and Toy.
 	InputHandler handler(dimensions, position, commands);
 	Room room(dimensions);
 	Toy vacuum(&room, position);
 
-	// Outputs
+	// Outputs for description and input values.
 	std::string line;
 	std::ifstream myfile("description.txt");
 	if (myfile.is_open())
@@ -29,10 +29,10 @@ int main() {
 	std::cout << "Starting Position of vacuum: " << vacuum.GetPosition() << std::endl;
 	std::cout << "Movement Commands: " << commands << std::endl;
 
-	// The execution of the commands
+	// The execution of the commands.
 	vacuum.ExecuteCommands(commands);
 
-	// Output of the end result
+	// Output of the end result.
 	std::cout << "Result: " << vacuum.GetPosition() << std::endl;
 
 	return 0;
